@@ -2,9 +2,11 @@ function splitIntoArray(input) {
 	const numberString = input.toString();
 	const numberPairs = [];
 
-	for (let i = 0; i < numberString.length - 1; i += 2) {
-		const pair = numberString.slice(i, i + 2);
-		numberPairs.push(pair);
+	for (let i = 0; i < numberString.length - 1; i++) {
+		for (let j = i + 2; j <= numberString.length; j++) {
+			const pair = numberString.slice(i, j);
+			numberPairs.push(pair);
+		}
 	}
 
 	return numberPairs;
@@ -20,12 +22,10 @@ console.log(result);
 function findMostRepeatedPair(numberPairs) {
 	const pairCounts = new Map();
 
-	// Iterate through the number pairs to find counts
 	for (const pair of numberPairs) {
 		pairCounts.set(pair, (pairCounts.get(pair) || 0) + 1);
 	}
 
-	// Find the pair with the highest count
 	let mostRepeated = null;
 	let highestCount = 0;
 
